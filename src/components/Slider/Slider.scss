@@ -1,0 +1,38 @@
+.slider {
+  position: relative;
+  margin: 0 auto;
+
+  &__titles {
+    max-width: 600px;
+    text-align: center;
+  }
+
+  &__txt {
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 10px;
+    margin-bottom: 1.5em;
+    color: #666;
+  }
+
+  &__title {
+    font-weight: 900;
+    font-size: 55px;
+    line-height: 60px;
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  &__btn {
+    font-size: 12px;
+    letter-spacing: 3px;
+    padding: 12px 40px;
+    color: #fff;
+    background: #333;
+  }
+
+  &__img {
+    height: 100%;
+    margin: 0 auto;
+  }
+}

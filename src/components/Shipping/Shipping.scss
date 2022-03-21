@@ -1,0 +1,25 @@
+.ship {
+  padding: 2em 0;
+
+  .item {
+    text-align: center;
+
+    i {
+      font-size: 36px;
+      margin-bottom: 1rem;
+      color: #6bad0b;
+    }
+
+    &__title {
+      display: block;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    &__desc {
+      color: #878787;
+    }
+  }
+}
