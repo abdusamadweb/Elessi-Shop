@@ -13,7 +13,9 @@ const FoodDrop = ({
     const subtotal = useSelector((state) => state.food.buy.total);
     const buyFoods = useSelector((state) => state.food.buy.foods);
 
-    dispatch(getSubtotal());
+    if (buyFoods.length !== 0) {
+        dispatch(getSubtotal());
+    }
 
     const removeFood = (e) => {
         dispatch(delFood(e));
