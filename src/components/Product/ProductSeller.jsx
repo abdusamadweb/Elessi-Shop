@@ -4,7 +4,7 @@ import ProductSellerList from "./ProductSellerList";
 import Cart from "../Cart/Cart";
 
 const ProductSeller = () => {
-    const foods = useSelector((state) => state.food.foods);
+    const foods = useSelector((state) => state.food.filter);
 
     const [food, setFood] = useState(foods.slice(0, 2));
     const [active, setActive] = useState(1);
@@ -30,7 +30,7 @@ const ProductSeller = () => {
                 products={foods.slice(2, 6)}
             />
             <ul className='seller__list row'>
-                {food.map((item, index) => (
+                {foods.map((item, index) => (
                     <Cart
                         key={index}
                         item={item}

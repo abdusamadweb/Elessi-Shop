@@ -30,18 +30,30 @@
 
 .header {
   background: #fff;
+  transition: all 0.4s ease;
   
   &-scroll {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    background: #fff;
+    z-index: 5;
+    box-shadow: 2px 2px 30px -1px #c9c6c6;
+  }
+
+  .scroll {
+    width: 100%;
+  }
+
+  &-p{
+    padding: 30px 0 !important;
   }
 
   &__inner {
     padding: 40px 0;
     background: #fff;
+    transition: all 0.4s ease;
   }
 
   .form {

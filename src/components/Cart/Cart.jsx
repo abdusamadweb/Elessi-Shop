@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {addModalItem, pushFavFood, setControlModal} from "../../redux/foodSlice";
+import {addModalItem, pushFavFood, setControlModal, wishlist} from "../../redux/foodSlice";
+import data from "../../data/data";
 
 const Cart = ({ item }) => {
-    const { id, name, price, sale, images } = item;
+    const { id, name, price, sale, images,favourite } = item;
 
     const  dispatch = useDispatch()
     const eyeClickHandler = () => {
@@ -12,14 +13,26 @@ const Cart = ({ item }) => {
         dispatch(addModalItem(item))
     }
 
+    function likeHandler(){
+        if(!favourite){
+            dispatch(pushFavFood(item))
+        }
+        dispatch(wishlist(id))
+    }
+
     return (
         <li className='seller__item item'>
             <div className='item__imgs'>
                 <div className='item__like row between'>
                     {item.sale !== null ? <span className='sale'>-20%</span> : <span />}
-                    <button onClick={() => dispatch(pushFavFood(item))}>
-                        <i className="fal fa-heart" />
-                    </button>
+                    <Link to={favourite ? "/wishlist" : "/"} onClick={ likeHandler}>
+
+                        {
+                            favourite ?
+                            <i className="fas fa-heart" />
+                                :      <i className="fal fa-heart" />
+                        }
+                    </Link>
                 </div>
                 <div className='item-hover'>
                     <div><i className="far fa-eye" onClick={eyeClickHandler} /></div>

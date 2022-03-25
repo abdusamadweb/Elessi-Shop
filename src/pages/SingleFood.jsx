@@ -9,7 +9,7 @@ import ModalItem from "../components/UI/ModalIem/ModalItem";
 
 const SingleFood = () => {
     const food = useSelector((state) => state.food.singleFood);
-    const {name, price, sale, images, quantity} = food;
+    const {name, price, sale, images, quantity,id} = food;
 
     const dispatch = useDispatch();
 
@@ -54,6 +54,12 @@ const SingleFood = () => {
         const id = setInterval(timer, 1000);
         return () => clearInterval(id);
     }, [time])
+
+    useEffect(()=> {
+        window.scrollTo(0,235)
+    },[id])
+
+
 
 
     return (

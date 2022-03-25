@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {addModalItem, pushFavFood, setControlModal} from "../../redux/foodSlice";
+import {addModalItem, pushFavFood, setControlModal, wishlist} from "../../redux/foodSlice";
 
 const CartSlide = ({
     item,
@@ -18,14 +18,26 @@ const CartSlide = ({
         dispatch(addModalItem(item))
     }
 
+    function likeHandler(){
+        if(!item.favourite){
+            dispatch(pushFavFood(item))
+        }
+        dispatch(wishlist(item.id))
+    }
+
     return (
         <li className='single__item item' style={transX}>
             <div className='item__imgs'>
                 <div className='item__like row between'>
-                    {item.sale !== null && <span className='sale'>-20%</span>}
-                    <button onClick={() => dispatch(pushFavFood(item))}>
-                        <i className="fal fa-heart" />
-                    </button>
+                    {item.sale !== null ? <span className='sale'>-20%</span> : <span />}
+                    <Link to={item.favourite ? "/wishlist" : "/"} onClick={ likeHandler}>
+
+                        {
+                            item.favourite ?
+                                <i className="fas fa-heart" />
+                                :      <i className="fal fa-heart" />
+                        }
+                    </Link>
                 </div>
                 <div className='item-hover'>
                     <div><i className="far fa-eye" onClick={eyeClickHandler} /></div>
@@ -39,7 +51,7 @@ const CartSlide = ({
             </div>
             <div className='item__titles between'>
                 <div>
-                    <Link className='item__title' to='single'>{item.name}</Link>
+                    <Link className='item__title' to={`/single/${item.id}`}>{item.name}</Link>
                     {item.sale !== null ? (
                         <div className='row align-center' style={{marginBottom: '1.5em'}}>
                             <span className='item__under'>${item.price}.00</span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../components/Wishlist/Wishlist.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {delFavFood, pushFoods} from "../redux/foodSlice";
@@ -7,6 +7,10 @@ const Wishlist = () => {
     const wishlist = useSelector(state => state.food.favourites.foods);
 
     const dispatch = useDispatch();
+
+    useEffect(()=> {
+        window.scrollTo(0,0)
+    },[wishlist.id])
 
     return (
         <div className='wishlist'>
