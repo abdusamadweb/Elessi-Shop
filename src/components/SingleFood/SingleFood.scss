@@ -64,7 +64,6 @@
     }
   }
   .desc {
-    padding-top: 0;
 
     &__btn {
       margin-bottom: 20px;
@@ -80,6 +79,17 @@
       span {
         color: #6bad0b;
       }
+    }
+
+    &__under {
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    &__sale {
+      font-weight: 700;
+      font-size: 28px;
+      color: #f76b6a;
     }
 
     &__visas {

@@ -1,17 +1,14 @@
 import React, {useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import './FoodDrop.scss';
-import {delFood, getSubtotal} from "../../../redux/foodSlice";
+import {delFood, getSubtotal, setControlFoodDrop} from "../../../redux/foodSlice";
 
-const FoodDrop = ({
-    modal,
-    dropStyle,
-    setModal,
-}) => {
+const FoodDrop = ({ dropStyle }) => {
     const dispatch = useDispatch();
 
     const subtotal = useSelector((state) => state.food.buy.total);
     const buyFoods = useSelector((state) => state.food.buy.foods);
+    const modal = useSelector(state => state.food.controlFoodDrop);
 
     if (buyFoods.length !== 0) {
         dispatch(getSubtotal());
@@ -31,8 +28,8 @@ const FoodDrop = ({
         <div className="drop" style={modal === true ? dropStyle : {}}>
             <div className="drop__header row center align-center">
                 <span className='drop__title'>YOUR CART</span>
-                <button onClick={() => setModal(false)} className='close'>
-                    <i className="fal fa-times"></i>
+                <button onClick={() => dispatch(setControlFoodDrop(false))} className='close'>
+                    <i className="fal fa-times" />
                 </button>
             </div>
             <div className="drop__body">
@@ -77,7 +74,10 @@ const FoodDrop = ({
                             <div className='subtotal__lines relative-p'>
                                 <div className='subtotal__line'>
                                     <span className='subtotal__line-txt'>Spend ${200 - subtotal}.00 more to reach FREE SHIPPING!</span>
-                                    <span className='subtotal__line-width' style={subtotalLineStyle} />
+                                    <div className='line' style={subtotalLineStyle}>
+                                        <span className='left' />
+                                        <span className='right' />
+                                    </div>
                                 </div>
                                 <span className='subtotal__car'>
                                     <i className="fal fa-car center-absolute" />

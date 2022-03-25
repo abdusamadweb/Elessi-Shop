@@ -179,6 +179,27 @@
         background: #A5C962;
         z-index: 2;
       }
+
+      .line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: -webkit-linear-gradient(135deg, #95BF47 25%, #A5C962 25%, #A5C962 50%, #95BF47 50%, #95BF47 75%, #A5C962 75%);
+        width: 30%;
+        height: 100%;
+        line-height: 30px;
+        color: #fff;
+        background-size: 50px 50px;
+        animation: bar-animation 3s linear infinite;
+        -webkit-animation: bar-animation 3s linear infinite;
+
+        .left {
+          float: left;
+        }
+        .right {
+          float: right;
+        }
+      }
     }
 
     &__car {

@@ -20,10 +20,13 @@ const foodSlice = createSlice({
             total: 0,
             foods: [],
         },
+        modal: undefined,
+        controlModal: false,
+        controlFoodDrop: false,
     },
     reducers: {
         getSingleFood: (state, action) => {
-            state.singleFood = state.foods.all.find(el => el.id == action.payload);
+            state.singleFood = state.foods.find(el => el.id == action.payload);
         },
         getFavFood: (state, action) => {
             state.foods.all.forEach(item => {
@@ -50,12 +53,27 @@ const foodSlice = createSlice({
         delFood: (state, action) => {
             state.buy.foods = state.buy.foods.filter(item => item.id !== action.payload);
         },
+        delFavFood: (state, action) => {
+            state.favourites.foods = state.favourites.foods.filter(item => item.id !== action.payload);
+        },
         addQuantity: (state, action) => {
             state.singleFood.quantity = action.payload;
         },
         pushFoods: (state, action) => {
             state.buy.foods.push(action.payload);
         },
+        pushFavFoods: (state, action) => {
+            state.favourites.foods.push(action.payload);
+        },
+        addModalItem: (state, action) => {
+            state.modal = action.payload;
+        },
+        setControlModal: (state, action) => {
+            state.controlModal = action.payload;
+        },
+        setControlFoodDrop: (state, action) => {
+            state.controlFoodDrop = action.payload;
+        }
     }
 })
 
@@ -67,6 +85,11 @@ export const {
     pushFavFood,
     getFavFood,
     addFavFood,
-    getSubtotal
+    getSubtotal,
+    addModalItem,
+    setControlModal,
+    setControlFoodDrop,
+    delFavFood,
+    pushFavFoods
 } = foodSlice.actions;
 export default foodSlice.reducer;

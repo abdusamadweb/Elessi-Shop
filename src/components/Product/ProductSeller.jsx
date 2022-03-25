@@ -3,10 +3,10 @@ import {useSelector} from "react-redux";
 import ProductSellerList from "./ProductSellerList";
 import Cart from "../Cart/Cart";
 
-const ProductSeller = ({ like, setLikes, setModal }) => {
+const ProductSeller = () => {
     const foods = useSelector((state) => state.food.foods);
 
-    const [food, setFood] = useState(foods.fruits);
+    const [food, setFood] = useState(foods.slice(0, 2));
     const [active, setActive] = useState(1);
 
     const getActive = (index) => {
@@ -24,19 +24,16 @@ const ProductSeller = ({ like, setLikes, setModal }) => {
                 active={active}
                 getActive={getActive}
                 getFoods={getFoods}
-                fruits={foods.fruits}
-                vegetables={foods.vegetables}
-                milks={foods.milks}
-                products={foods.products}
+                fruits={foods.slice(0, 2)}
+                vegetables={foods.slice(2, 4)}
+                milks={foods.slice(4, 6)}
+                products={foods.slice(2, 6)}
             />
             <ul className='seller__list row'>
                 {food.map((item, index) => (
                     <Cart
                         key={index}
                         item={item}
-                        like={like}
-                        setLikes={setLikes}
-                        setModal={setModal}
                     />
                 ))}
             </ul>

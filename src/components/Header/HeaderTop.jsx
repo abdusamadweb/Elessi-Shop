@@ -11,7 +11,7 @@ const HeaderTop = () => {
     return (
         <div className='header-top'>
             <div className="header-top__inner container row between">
-                <p>Lorem enim eum molestias possimus quasi quis?</p>
+                <p>Add anything here or just remove it...</p>
                 <div className='header-top__lang langs'>
                     <span onClick={() => {getActive(1)}} className={`lang lang-en ${active === 1 ? 'active' : ''}`}>en</span>
                     <span onClick={() => {getActive(2)}} className={`lang ${active === 2 ? 'active' : ''}`}>uz</span>

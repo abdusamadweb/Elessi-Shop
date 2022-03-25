@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import ItemHover from "../UI/ItemHover/ItemHover";
-import Like from "../UI/Like/Like";
+import {useDispatch} from "react-redux";
+import {addModalItem, pushFavFood, setControlModal} from "../../redux/foodSlice";
 
 const CartSlide = ({
     item,
@@ -10,17 +10,26 @@ const CartSlide = ({
     setTrans,
     transU,
     setTransU,
-    setModal,
-    like,
-    setLikes,
 }) => {
 
+    const  dispatch = useDispatch()
+    const eyeClickHandler = () => {
+        dispatch(setControlModal(true))
+        dispatch(addModalItem(item))
+    }
 
     return (
         <li className='single__item item' style={transX}>
             <div className='item__imgs'>
-                <ItemHover setModal={setModal} />
-                <Like item={item} like={like} setLikes={setLikes} />
+                <div className='item__like row between'>
+                    {item.sale !== null && <span className='sale'>-20%</span>}
+                    <button onClick={() => dispatch(pushFavFood(item))}>
+                        <i className="fal fa-heart" />
+                    </button>
+                </div>
+                <div className='item-hover'>
+                    <div><i className="far fa-eye" onClick={eyeClickHandler} /></div>
+                </div>
                 <Link to={`/single/${item.id}`}>
                     <img
                         className='item__img'
@@ -51,7 +60,7 @@ const CartSlide = ({
                             </span>
                         </div>
                         <div className='item__line'>
-                            <span></span>
+                            <span />
                         </div>
                     </div>
                 </div>
@@ -64,7 +73,7 @@ const CartSlide = ({
                         }}
                         disabled={trans === 0 && true}
                     >
-                        <i className="far fa-angle-left"></i>
+                        <i className="far fa-angle-left" />
                         Prev deal
                     </button>
                     <button
@@ -76,7 +85,7 @@ const CartSlide = ({
                         disabled={trans === -2805 && true}
                     >
                         Next deal
-                        <i className="far fa-angle-right"></i>
+                        <i className="far fa-angle-right" />
                     </button>
                 </div>
             </div>

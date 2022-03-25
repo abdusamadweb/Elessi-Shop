@@ -1,0 +1,79 @@
+.wishlist {
+  padding: 50px 0;
+
+  &__title {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #333;
+  }
+
+  &__navs {
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 2em;
+  }
+
+  &__nav {
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__list {
+    padding: 1em 2em;
+    border-top: 1px solid #EFEFEF;
+    border-bottom: 1px solid #EFEFEF;
+
+    .item {
+      margin-bottom: 1em;
+
+      &__del {
+        font-size: 28px;
+        margin-right: 1.5em;
+        color: #333;
+      }
+
+      &__img {
+        width: 80px;
+        height: 90px;
+        margin-right: 3.5em;
+      }
+
+      &__title {
+        width: 260px;
+        color: #424242;
+      }
+
+      &__price {
+        width: 210px;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      &__stock {
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 5px 10px;
+        margin-right: 6em;
+        border: 2px solid #297e29;
+        color: #297e29;
+      }
+
+      &__btn {
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 1.2em 2em;
+        color: #fff;
+        background: #2d2d2d;
+      }
+    }
+  }
+
+  &__no {
+    text-align: center;
+    color: #444;
+  }
+}

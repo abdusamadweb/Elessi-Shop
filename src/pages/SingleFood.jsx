@@ -4,24 +4,25 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, useParams} from "react-router-dom";
 import {addQuantity, getSingleFood, pushFoods} from "../redux/foodSlice";
 import Cart from "../components/Cart/Cart";
+import ModalBg from "../components/UI/ModalIem/ModalBg";
+import ModalItem from "../components/UI/ModalIem/ModalItem";
 
-const SingleFood = ({ like, setLikes, modal, setModal }) => {
+const SingleFood = () => {
     const food = useSelector((state) => state.food.singleFood);
     const {name, price, sale, images, quantity} = food;
 
     const dispatch = useDispatch();
 
-    const bestFoods = useSelector((state) => state.food.foods.products);
+    const bestFoods = useSelector((state) => state.food.foods.slice(2, 6));
 
-    const buy = useSelector((state) => state.food.buy.foods);
     const [count, setCount] = useState(1);
     const upCount = () => {
         setCount(count + 1)
-        dispatch(addQuantity(count))
+        dispatch(addQuantity(count+1))
     }
     const downCount = () => {
         setCount(count - 1)
-        dispatch(addQuantity(count))
+        dispatch(addQuantity(count-1))
     }
     const pushItem = () => {
         dispatch(pushFoods(food))
@@ -39,7 +40,7 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
 
     const [transform, setTransform] = useState(0);
     const transformStyle = {
-        transform: `translateX(${transform}px)`
+        transform: `translateX(${transform}%)`
     }
 
     const [time, setTime] = useState(60);
@@ -57,6 +58,8 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
 
     return (
         <div className='single'>
+            <ModalBg />
+            <ModalItem />
             <div className='single__pagenation'>
                 <div className="container">
                     <span className='txt'><Link to='/'>Home</Link> / <span>{name}</span></span>
@@ -69,7 +72,7 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
                             <img
                                 onClick={() => {
                                     getActive(1)
-                                    transform !== 0 && setTransform(transform + 480)
+                                    transform !== 0 && setTransform(transform + 100)
                                 }}
                                 className={active === 1 ? 'active' : ''}
                                 src={images[0]}
@@ -77,7 +80,7 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
                             <img
                                 onClick={() => {
                                     getActive(2)
-                                    transform !== -480 && setTransform(transform - 480)
+                                    transform !== -480 && setTransform(transform - 100)
                                 }}
                                 className={active === 2 ? 'active' : ''}
                                 src={images[1]}
@@ -88,10 +91,16 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
                                 <img className='img' style={transformStyle} src={item} key={index} />
                             ))}
                             <div className='arrows center-absolute row between'>
-                                <button onClick={() => setTransform(transform + 480)} disabled={transform === 0 && true} >
+                                <button onClick={() => {
+                                    setTransform(transform + 100)
+                                    setActive(1)
+                                }} disabled={transform === 0 && true} >
                                     <i className="fal fa-angle-left" />
                                 </button>
-                                <button onClick={() => setTransform(transform - 480)} disabled={transform === -480 && true}>
+                                <button onClick={() => {
+                                    setTransform(transform - 100)
+                                    setActive(2)
+                                }} disabled={transform === -100 && true}>
                                     <i className="fal fa-angle-right" />
                                 </button>
                             </div>
@@ -109,7 +118,12 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
                         <Link className='desc__view' to='single'>view product details <i className="fal fa-angle-right" /></Link>
                         <div className='desc__avails'>
                             <span className='avail'>HURRY! ONLY <span>8</span> LEFT IN STOCK.</span>
-                            <span className='line'><span /></span>
+                            <div className='line-bg'>
+                                <div className='line'>
+                                    <span className='left' />
+                                    <span className='right' />
+                                </div>
+                            </div>
                         </div>
                         <div className='desc__times'>
                             <span className='desc__time'>0 <br/> <span>DAYS</span></span>
@@ -132,11 +146,11 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
                         <div className='desc__social row'>
                             <span>Share on:</span>
                             <ul className='desc__social-list row'>
-                                <li><a><i className="fab fa-facebook-f"></i></a></li>
-                                <li><a><i className="fab fa-twitter"></i></a></li>
-                                <li><a><i className="fab fa-google-plus-g"></i></a></li>
-                                <li><a><i className="fas fa-envelope"></i></a></li>
-                                <li><a><i className="fab fa-pinterest"></i></a></li>
+                                <li><a><i className="fab fa-facebook-f" /></a></li>
+                                <li><a><i className="fab fa-twitter" /></a></li>
+                                <li><a><i className="fab fa-google-plus-g" /></a></li>
+                                <li><a><i className="fas fa-envelope" /></a></li>
+                                <li><a><i className="fab fa-pinterest" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -146,12 +160,7 @@ const SingleFood = ({ like, setLikes, modal, setModal }) => {
                     <div className="seller">
                         <ul className='seller__list row'>
                             {bestFoods.map((item, index) => (
-                                <Cart
-                                    item={item}
-                                    like={like}
-                                    setLikes={setLikes}
-                                    setModal={setModal}
-                                />
+                                <Cart item={item} />
                             ))}
                         </ul>
                     </div>
