@@ -40,13 +40,14 @@
       display: flex;
       justify-content: space-between;
       overflow: hidden;
+      background: #F9F9F9;
 
       &:hover .arrows {
         opacity: 1;
       }
 
       .img {
-        width: 100%;
+        width: 480px;
         transition: transform 0.4s ease;
       }
 
@@ -64,6 +65,7 @@
     }
   }
   .desc {
+    padding-right: 0;
 
     &__btn {
       margin-bottom: 20px;

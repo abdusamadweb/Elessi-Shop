@@ -56,10 +56,10 @@ const SingleFood = () => {
     }, [time])
 
     useEffect(()=> {
-        window.scrollTo(0,235)
+        window.scrollTo(0,0)
     },[id])
 
-
+    console.log(transform);
 
 
     return (
@@ -83,14 +83,14 @@ const SingleFood = () => {
                                 className={active === 1 ? 'active' : ''}
                                 src={images[0]}
                             />
-                            <img
+                            <button 
                                 onClick={() => {
-                                    getActive(2)
-                                    transform !== -480 && setTransform(transform - 100)
+                                getActive(2)
+                                transform !== -480 && setTransform(transform - 100)
                                 }}
-                                className={active === 2 ? 'active' : ''}
-                                src={images[1]}
-                            />
+                                disabled={transform === -100 && true}>
+                                <img className={active === 2 ? 'active' : ''}src={images[1]}/>
+                            </button>
                         </div>
                         <div className="single__imgs-slide">
                             {images.map((item, index) => (

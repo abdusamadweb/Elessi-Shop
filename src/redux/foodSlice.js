@@ -82,7 +82,7 @@ const foodSlice = createSlice({
         setControlFoodDrop: (state, action) => {
             state.controlFoodDrop = action.payload;
         },
-        wishlist:(state,action) => {
+        wishlist: (state, action) => {
             state.foods = state.foods.filter(item => {
                 if(item.id === action.payload){
                     item.favourite = true
